@@ -1,3 +1,6 @@
+# einlesen in eine Funktion
+# function one hot encoding
+
 from pyspark.sql import functions as F
 from pyspark.sql.types import DoubleType
 from pyspark.sql.types import DateType
@@ -23,10 +26,10 @@ from pyspark.ml.classification import LogisticRegression
 from pyspark.ml.evaluation import MulticlassClassificationEvaluator
 from pyspark.ml.evaluation import BinaryClassificationEvaluator
 
-
 from time import *
 import pandas as pd
 
+# Cluster Configuration
 confCluster = SparkConf().setAppName("BinaryClassification")
 confCluster.set("spark.executor.memory", "8g")
 confCluster.set("spark.executor.cores", "4")
@@ -34,56 +37,47 @@ repartition_count = 32
 sc = SparkContext(conf=confCluster)
 sqlContext = SQLContext(sc)
 
-
-# Preprocess training data
-# create RDD with training data 
-train_set = sc.textFile("dmc2010_train.txt", minPartitions=repartition_count)
-# each record is in " ", records have to be extracted with replace method
-train_set = train_set.map(lambda x: x.replace('"','')).persist()
-train_set = train_set.map(lambda x: x.replace(';;',';null;')).persist()
-# extract features
-train_set = train_set.map(lambda x: x.split(';')).persist()
-# extract header of RDD
-header = train_set.first()
-train_set = train_set.filter(lambda x: x != header).persist()
-# train_set.count() #32428
-dfTrain = sqlContext.createDataFrame(train_set, header)
+#### Preprocessing
+start_time = time()
 
 #############################################
-# Preprocess test data: same structure, but without target variable
+# Preprocess test data has same structure as train data, but without target variable
+train_set = sc.textFile("dmc2010_train.txt", minPartitions=repartition_count)
 test_set = sc.textFile("dmc2010_class.txt", minPartitions=repartition_count)
-test_set = test_set.map(lambda x: x.replace('"','')).persist()
-test_set = test_set.map(lambda x: x.replace(';;',';null;')).persist()
-test_set = test_set.map(lambda x: x.split(';')).persist()
-header = test_set.first()
-test_set = test_set.filter(lambda x: x != header).persist()
-dfTest = sqlContext.createDataFrame(test_set, header)
-# cast Label to integer?
+
+def transformData(dataset):
+    dataset = dataset.map(lambda x: x.replace('"','')).persist()
+    dataset = dataset.map(lambda x: x.replace(';;',';null;')).persist()
+    dataset = dataset.map(lambda x: x.split(';')).persist()
+    header = dataset.first()
+    dataset = dataset.filter(lambda x: x != header).persist()
+    df = sqlContext.createDataFrame(dataset, header)
+    return df
+
+dfTrain = transformData(train_set)
+dfTest = transformData(test_set)
+
 #############################################
 def preprocessing(df):
     df = df.drop(*['date','domain','datecreated','title','points','advertisingdatacode','invoicepostcode','delivpostcode','deliverydatepromised','deliverydatereal'])
     features = df.schema.names
     for feature in features:
         df = df.withColumn(feature, df[feature].cast(IntegerType()))
-    #df = df.drop('weight')
+
     df = df.withColumn("books",col("w0")+col("w1")+col("w2")+col("w3")+col("w4")+col("w5"))
     df = df.withColumn("nobooks",col("w6")+col("w7")+col("w8")+col("w9")+col("w10"))
     df = df.withColumn("itemseff",col("numberitems")-(col("cancel") + col("remi")))
-    #df = df.drop(*["w0","w1","w2","w3","w4","w5","w6","w7","w8","w9","w10"])
-    #df = df.withColumn("label",col("target90"))
-    #df = df.drop("target90")
     #df = df.withColumn("deliverydatepromised", df.deliverydatepromised.cast(DateType()))
     #df = df.withColumn("deliverydatereal", df.deliverydatereal.cast(DateType()))
     #df = df.withColumn("deliverydiff", datediff(col('deliverydatepromised'),col('deliverydatereal')))
-    #date überzogen
+    #deliverydiff time between promised and real delivery date
     return df
 #############################################
 
-#dfTrain = preprocessing(dfTrain)
-#dfTest = preprocessing(dfTest)
+dfTrain = preprocessing(dfTrain)
+dfTest = preprocessing(dfTest)
 dfTrain = dfTrain.withColumn("label",col("target90")) #rename target variable for classifier, get right index
 dfTrain = dfTrain.drop("target90") #drop old column
-
 
 # get labels of test data
 # labels are in external file, they have to be joined to the dfTest DataFrame
@@ -91,6 +85,7 @@ classLabels = sc.textFile("dmc2010_real.txt", minPartitions=repartition_count)
 classLabels = classLabels.map(lambda x: x.replace('"','')).persist()
 classLabels = classLabels.map(lambda x: x.replace(';;',';null;')).persist()
 classLabels = classLabels.map(lambda x: x.split(';')).persist()
+
 dfClassLabel = sqlContext.createDataFrame(classLabels, ["customernumber","label"])
 dfTest = dfTest.join(dfClassLabel, dfTest.customernumber == dfClassLabel.customernumber,how='inner')
 dfTest.drop("customernumber")
@@ -117,41 +112,51 @@ dfTrain_over = dfTrain.unionAll(dfTrain_under_sample) # combine dataframes to ov
 # dfTrain.filter(dfTrain.label == 0).count() #26377
 # dfTrain.filter(dfTrain.label == 1).count() #26671
 # now we have equally distributed class labels
-dfTrain = dfTrain.unionAll(dfTrain_under_sample)
+dfTrain = dfTrain.unionAll(dfTrain_under_sample) # Union of resampled data with training data
+
+
 # Feature Engineering (Selection)
+# OneHot Encoding of nominal scaled features
+def encoding(df):
+    
+    encoder1 = OneHotEncoder(inputCol='paymenttype', outputCol='paymenttype_Vec')
+    encoder2 = OneHotEncoder(inputCol='model', outputCol='model_Vec')
+    # Apply the encoder transformer
+    df = encoder0.transform(df)
+    df = encoder1.transform(df)
+    df = encoder2.transform(df)
+    return df
 
-# One Hot Encoding
-# Create encoder transformer
-encoder0 = OneHotEncoder(inputCol='salutation', outputCol='salutation_Vec')
-encoder1 = OneHotEncoder(inputCol='paymenttype', outputCol='paymenttype_Vec')
-encoder2 = OneHotEncoder(inputCol='model', outputCol='model_Vec')
-# Apply the encoder transformer
-dfTrain = encoder0.transform(dfTrain)
-dfTrain = encoder1.transform(dfTrain)
-dfTrain = encoder2.transform(dfTrain)
+dfTrain = encoding(dfTrain)
+dfTest = encoding(dfTest)
 
+end_time = time()
+elapsed_time = end_time - start_time
+print("Time of preprocessing: %.3f seconds" % elapsed_time)
+#### End of preprocessing
 
 #### Modeling & Evaluation
-#allFeatures = ['salutation_Vec','newsletter','model_Vec','paymenttype_Vec','voucher','case','numberitems','gift','entry','shippingcosts','weight','remi','cancel','used','w0','w1','w2','w3','w4','w5','w6','w7','w8','w9','w10','books','nobooks','itemseff']
-#assembler = VectorAssembler(inputCols=['case','model_Vec','paymenttype_Vec','salutation_Vec','newsletter', 'voucher','books','nobooks','numberitems','itemseff'], outputCol='features')
+# Evaluation criterion is generated revenue based on a given cost matrix 
 def costMatrix(predicitionDF):
-    tp = predictionDF[(predictionDF.label == 1) & (predictionDF.prediction == 1.0)].count()
+    #tp = predictionDF[(predictionDF.label == 1) & (predictionDF.prediction == 1.0)].count()
     tn = predictionDF[(predictionDF.label == 0) & (predictionDF.prediction == 0.0)].count()
-    fp = predictionDF[(predictionDF.label == 0) & (predictionDF.prediction == 1.0)].count()
+    #fp = predictionDF[(predictionDF.label == 0) & (predictionDF.prediction == 1.0)].count()
     fn = predictionDF[(predictionDF.label == 1) & (predictionDF.prediction == 0.0)].count()
     return (tn * 1.5 - fn * 5) #revenue based on costMatrix
 
-revenuesTree = []
-
 # Training of a Decision Tree model with all Features
+# dfTrain = dfTrain.drop("features") 
+# dfTest = dfTest.drop("features")
+
+# selected features of preprocessed datasets for modeling
 allFeatures = ['salutation_Vec','newsletter','model_Vec','paymenttype_Vec','voucher','case','numberitems','gift','entry','shippingcosts','weight','remi','cancel','used','w0','w1','w2','w3','w4','w5','w6','w7','w8','w9','w10','books','nobooks','itemseff']
 assembler = VectorAssembler(inputCols=allFeatures, outputCol='features')
-dfTrain = dfTrain.drop("features") 
-dfTest = dfTest.drop("features")
 dfTrain = assembler.transform(dfTrain)
 dfTest = assembler.transform(dfTest)
 
 # Training + Prediction
+###################################
+#### Decision Tree Classifier
 start_time = time()
 tree = DecisionTreeClassifier(maxDepth=5)
 tree_model = tree.fit(dfTrain)
@@ -168,6 +173,14 @@ end_time = time()
 elapsed_time = end_time - start_time
 print(revenue)
 print("Time to evaluate model: %.3f seconds" % elapsed_time)
+
+# further metrics for evaluation of the classifier
+evaluatorM = MulticlassClassificationEvaluator()
+evaluatorM.evaluate(predictionTree, {evaluatorM.metricName: 'accuracy'}) 
+evaluator = BinaryClassificationEvaluator()
+print("Tree: Test_SET (Area Under ROC): " + str(evaluator.evaluate(predictionTree, {evaluator.metricName: "areaUnderROC"})))
+print("Tree: Test_SET (Area Under PR): " + str(evaluator.evaluate(predictionTree, {evaluator.metricName: "areaUnderPR"})))
+evaluator = BinaryClassificationEvaluator()
 
 ###################################
 # Random Forest with all Features
@@ -189,74 +202,22 @@ elapsed_time = end_time - start_time
 print(revenue)
 print("Time to evaluate model: %.3f seconds" % elapsed_time)
 
-# RandomForest Feature Importance
-print rf_model.featureImportances
-
-# Convert feature importances to a pandas column
-# & Convert list of feature names to pandas column
-# sort DataFrame
-fi_df = pd.DataFrame(rf_model.featureImportances.toArray(),
-columns=['importance'])
-fi_df['feature'] = pd.Series(allFeatures)
-fi_df.sort_values(by=['importance'], ascending=False, inplace=True)
-
-
-#revenuesTree.append(revenue)
-
-# Metrics for evaluation of the classifier
+# further metrics for evaluation of the classifier
 evaluatorM = MulticlassClassificationEvaluator()
 evaluatorM.evaluate(predictionTree, {evaluatorM.metricName: 'accuracy'}) 
 evaluator = BinaryClassificationEvaluator()
-print("Tree: Test_SET (Area Under ROC): " + str(evaluator.evaluate(predictionTree, {evaluator.metricName: "areaUnderROC"})))
-print("Tree: Test_SET (Area Under PR): " + str(evaluator.evaluate(predictionTree, {evaluator.metricName: "areaUnderPR"})))
+print("Tree: Test_SET (Area Under ROC): " + str(evaluator.evaluate(predictionRF, {evaluator.metricName: "areaUnderROC"})))
+print("Tree: Test_SET (Area Under PR): " + str(evaluator.evaluate(predictionRF, {evaluator.metricName: "areaUnderPR"})))
 evaluator = BinaryClassificationEvaluator()
 
+#####################################################################################
 
 #summaryTrain.toPandas().to_csv("summary.csv", encoding='utf-8')
 
-
-# Count number of rows
-# train_set.count()
-# 32429 records with header
-# create DataFrame of training data
-# extract header of RDD
-# train_set.count() #32428
-dfTrain.filter(dfTrain.label == 1).count() #6051
-dfTrain.filter(dfTrain.label == 0).count() #26377
-dfTest.filter(dfTest.label == 1).count() #6168
-dfTest.filter(dfTest.label == 0).count() #26259
-
-
-dfTrain = sqlContext.createDataFrame(train_set, header)
-#len(dfTrain.columns) #38
-
-# Count duplicates in training date 
-#dfTrain.select(header).dropDuplicates().count()
-# no duplicates found
-
-# check DataTypes
-dfTrain.printSchema()
-
-# find Null values
-dfTrain.select(['deliverydatepomised','deliverydatereal']).dropna().count()
-
-
-
-# Summary statistics
-dfTrain.describe().show()
-summaryTrain = dfTrain.describe()
-summaryTrain.toPandas().to_csv("summary.csv", encoding='utf-8')
-
-
-
-# Correlation
-# Correlation Pearson 
-# dfTrain.stat.corr('numberitems', 'weight') #ca. 0.77
-
-cardinalFeatures = ["numberitems","remi","cancel","used","w0","w1","w2","w3","w4","w5","w6","w7","w8","w9","w10"]
-corrCoef = []
-i = 0
-#for feature in cardinalFeatures:
-#    corrCoef.append(dfTrain.stat.corr(feature, 'target90'))
-
-#correlation = sqlContext.createDataFrame(corrCoef, cardinalFeatures)
+##### Data Understanding
+# Correlation matrix between cardinal features
+cardinalFeatures = ['numberitems','weight','remi','cancel','used','w0','w1','w2','w3','w4','w5','w6','w7','w8','w9','w10','books','nobooks','itemseff']
+assembler = VectorAssembler(inputCols=cardinalFeatures, outputCol="vector_cardinal")
+df_cardinal = assembler.transform(dfTrain).select("vector_cardinal")
+matrix = Correlation.corr(df_cardinal, "vector_cardinal")
+matrix.collect()[0]["pearson({})".format("vector_cardinal")].values

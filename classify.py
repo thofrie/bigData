@@ -96,3 +96,76 @@ def encoding(df):
     df = encoder1.transform(df)
     df = encoder2.transform(df)
     return df
+
+test_set = test_set.map(lambda x: x.replace('"','')).persist()
+test_set = test_set.map(lambda x: x.replace(';;',';null;')).persist()
+test_set = test_set.map(lambda x: x.split(';')).persist()
+header = test_set.first()
+test_set = test_set.filter(lambda x: x != header).persist()
+dfTest = sqlContext.createDataFrame(test_set, header)
+
+# each record is in " ", records have to be extracted with replace method
+train_set = train_set.map(lambda x: x.replace('"','')).persist()
+train_set = train_set.map(lambda x: x.replace(';;',';null;')).persist()
+# extract features
+train_set = train_set.map(lambda x: x.split(';')).persist()
+# extract header of RDD
+header = train_set.first()
+train_set = train_set.filter(lambda x: x != header).persist()
+# train_set.count() #32428
+dfTrain = sqlContext.createDataFrame(train_set, header)
+
+# RandomForest Feature Importance
+print rf_model.featureImportances
+
+# Convert feature importances to a pandas column
+# & Convert list of feature names to pandas column
+# sort DataFrame
+fi_df = pd.DataFrame(rf_model.featureImportances.toArray(),
+columns=['importance'])
+fi_df['feature'] = pd.Series(allFeatures)
+fi_df.sort_values(by=['importance'], ascending=False, inplace=True)
+
+# Count number of rows
+# train_set.count()
+# 32429 records with header
+# create DataFrame of training data
+# extract header of RDD
+# train_set.count() #32428
+dfTrain.filter(dfTrain.label == 1).count() #6051
+dfTrain.filter(dfTrain.label == 0).count() #26377
+dfTest.filter(dfTest.label == 1).count() #6168
+dfTest.filter(dfTest.label == 0).count() #26259
+
+
+dfTrain = sqlContext.createDataFrame(train_set, header)
+#len(dfTrain.columns) #38
+
+# Count duplicates in training date 
+#dfTrain.select(header).dropDuplicates().count()
+# no duplicates found
+
+# check DataTypes
+dfTrain.printSchema()
+
+# find Null values
+dfTrain.select(['deliverydatepomised','deliverydatereal']).dropna().count()
+
+# Summary statistics
+dfTrain.describe().show()
+summaryTrain = dfTrain.describe()
+summaryTrain.toPandas().to_csv("summary.csv", encoding='utf-8')
+
+
+
+# Correlation
+# Correlation Pearson 
+# dfTrain.stat.corr('numberitems', 'weight') #ca. 0.77
+
+cardinalFeatures = ["numberitems","remi","cancel","used","w0","w1","w2","w3","w4","w5","w6","w7","w8","w9","w10"]
+corrCoef = []
+i = 0
+#for feature in cardinalFeatures:
+#    corrCoef.append(dfTrain.stat.corr(feature, 'target90'))
+
+#correlation = sqlContext.createDataFrame(corrCoef, cardinalFeatures)
