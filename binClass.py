@@ -108,17 +108,16 @@ fraction = fraction - 2 # because dataframe has already 6051 values of 1
 
 dfTrain_under = dfTrain.filter(dfTrain.label == 1) # get dataframe of underrepresentated class
 dfTrain_under_sample = dfTrain_under.sample(withReplacement=True, fraction = fraction, seed = 0)
-dfTrain_over = dfTrain.unionAll(dfTrain_under_sample) # combine dataframes to oversampled dataframe
+dfTrain = dfTrain.unionAll(dfTrain_under_sample) # combine dataframes to oversampled dataframe
 # dfTrain.filter(dfTrain.label == 0).count() #26377
 # dfTrain.filter(dfTrain.label == 1).count() #26671
 # now we have equally distributed class labels
-dfTrain = dfTrain.unionAll(dfTrain_under_sample) # Union of resampled data with training data
 
 
 # Feature Engineering (Selection)
 # OneHot Encoding of nominal scaled features
 def encoding(df):
-    
+    encoder0 = OneHotEncoder(inputCol='salutation', outputCol='salutation_Vec')
     encoder1 = OneHotEncoder(inputCol='paymenttype', outputCol='paymenttype_Vec')
     encoder2 = OneHotEncoder(inputCol='model', outputCol='model_Vec')
     # Apply the encoder transformer
@@ -127,8 +126,10 @@ def encoding(df):
     df = encoder2.transform(df)
     return df
 
-dfTrain = encoding(dfTrain)
+# Apply one hot encoding 
+dfTrain = encoding(dfTrain) 
 dfTest = encoding(dfTest)
+
 
 end_time = time()
 elapsed_time = end_time - start_time
@@ -156,9 +157,12 @@ dfTest = assembler.transform(dfTest)
 
 # Training + Prediction
 ###################################
+
+revenues = [] # List of generated results
+
 #### Decision Tree Classifier
 start_time = time()
-tree = DecisionTreeClassifier(maxDepth=5)
+tree = DecisionTreeClassifier()
 tree_model = tree.fit(dfTrain)
 predictionTree = tree_model.transform(dfTest)
 end_time = time()
@@ -168,19 +172,26 @@ print("Time to train Tree on dfTrain and make predictions on dfTest: %.3f second
 # Evaluation
 predictionTree.groupBy("label", "prediction").count().show()
 start_time = time()
-revenue = costMatrix(predictionTree)
+#revenue = costMatrix(predictionTree)
+tn = predictionTree[(predictionTree.label == 0) & (predictionTree.prediction == 0.0)].count()
+fn = predictionTree[(predictionTree.label == 1) & (predictionTree.prediction == 0.0)].count()
+revenue = (tn * 1.5 - fn * 5) #revenue based on costMatrix
+revenues.append(revenue)
 end_time = time()
 elapsed_time = end_time - start_time
-print(revenue)
+
 print("Time to evaluate model: %.3f seconds" % elapsed_time)
 
 # further metrics for evaluation of the classifier
-evaluatorM = MulticlassClassificationEvaluator()
+""" evaluatorM = MulticlassClassificationEvaluator()
 evaluatorM.evaluate(predictionTree, {evaluatorM.metricName: 'accuracy'}) 
 evaluator = BinaryClassificationEvaluator()
 print("Tree: Test_SET (Area Under ROC): " + str(evaluator.evaluate(predictionTree, {evaluator.metricName: "areaUnderROC"})))
 print("Tree: Test_SET (Area Under PR): " + str(evaluator.evaluate(predictionTree, {evaluator.metricName: "areaUnderPR"})))
-evaluator = BinaryClassificationEvaluator()
+evaluator = BinaryClassificationEvaluator() """
+
+
+
 
 ###################################
 # Random Forest with all Features
@@ -196,19 +207,31 @@ print("Time to train Random Forest on dfTrain and make predictions on dfTest: %.
 # Evaluation
 predictionRF.groupBy("label", "prediction").count().show()
 start_time = time()
-revenue = costMatrix(predictionRF)
+tn = predictionRF[(predictionRF.label == 0) & (predictionRF.prediction == 0.0)].count()
+fn = predictionRF[(predictionRF.label == 1) & (predictionRF.prediction == 0.0)].count()
+revenue = (tn * 1.5 - fn * 5) #revenue based on costMatrix
+revenues.append(revenue)
 end_time = time()
 elapsed_time = end_time - start_time
-print(revenue)
 print("Time to evaluate model: %.3f seconds" % elapsed_time)
 
 # further metrics for evaluation of the classifier
-evaluatorM = MulticlassClassificationEvaluator()
+""" evaluatorM = MulticlassClassificationEvaluator()
 evaluatorM.evaluate(predictionTree, {evaluatorM.metricName: 'accuracy'}) 
 evaluator = BinaryClassificationEvaluator()
 print("Tree: Test_SET (Area Under ROC): " + str(evaluator.evaluate(predictionRF, {evaluator.metricName: "areaUnderROC"})))
 print("Tree: Test_SET (Area Under PR): " + str(evaluator.evaluate(predictionRF, {evaluator.metricName: "areaUnderPR"})))
-evaluator = BinaryClassificationEvaluator()
+ """
+
+ # Results to csv
+revenuePDF = pd.DataFrame(revenues,columns=["revenue"])
+revenuePDF.to_csv("binClass.csv", encoding='utf-8')
+
+#####################################################################################
+
+
+
+
 
 #####################################################################################
 
@@ -216,8 +239,14 @@ evaluator = BinaryClassificationEvaluator()
 
 ##### Data Understanding
 # Correlation matrix between cardinal features
-cardinalFeatures = ['numberitems','weight','remi','cancel','used','w0','w1','w2','w3','w4','w5','w6','w7','w8','w9','w10','books','nobooks','itemseff']
+""" cardinalFeatures = ['numberitems','weight','remi','cancel','used','w0','w1','w2','w3','w4','w5','w6','w7','w8','w9','w10','books','nobooks','itemseff']
 assembler = VectorAssembler(inputCols=cardinalFeatures, outputCol="vector_cardinal")
 df_cardinal = assembler.transform(dfTrain).select("vector_cardinal")
 matrix = Correlation.corr(df_cardinal, "vector_cardinal")
 matrix.collect()[0]["pearson({})".format("vector_cardinal")].values
+ """
+
+dfTrain.unpersist()
+dfTest.unpersist()
+dfTrain_under_sample.unpersist()
+dfTrain_under.unpersist()
