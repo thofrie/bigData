@@ -71,7 +71,11 @@
 %\usecolortheme{wolverine}
 
 \usepackage[official]{eurosym}
-
+\usepackage{svg}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage[utf8]{inputenc}
 %\setbeamertemplate{footline} % To remove the footer line in all slides uncomment this line
 %\setbeamertemplate{footline}[page number] % To replace the footer line in all slides with a simple slide count uncomment this line
 
@@ -92,42 +96,73 @@
 \institute[FSU] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
 {
 Friedrich-Schiller-Universität Jena \\ % Your institution for the title page
-
 }
 \date{\today} % Date, can be changed to a custom date
 
 \begin{document}
-
 \begin{frame}
 \titlepage % Print the title page as the first slide
 \end{frame}
-
+%-------------------------------------
 \begin{frame}
-\frametitle{Overview} % Table of contents slide, comment this block out to remove it
-\tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
+\frametitle{Übersicht} 
+\tableofcontents
+\section{Aufgabenstellung und Datensatz} 
+\section{Klassifikation und Evaluation} 
 \end{frame}
 
 %----------------------------------------------------------------------------------------
 %	PRESENTATION SLIDES
 %----------------------------------------------------------------------------------------
+\begin{frame}
 
-%------------------------------------------------
-\section{First Section} % Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
-%------------------------------------------------
+\frametitle{Ausgangssituation}
+\begin{itemize}
+	\item Data Mining Cup 2010
+	\item \textbf{Ziel:} Gewinnmaximierung anhand der Ermittlung der Wiederkäufer
+\end{itemize}
+\begin{table}[h]
+\small
+\begin{tabular}{c r|c|c|}
+            & & \multicolumn{2}{c|}{Vorhergesagt}             \\
+            &	&kein Wiederkäufer(0)   &Wiederkäufer(1)            \\ \hline
+            \multirow{2}*{Tatsächlich} &kein Wiederkäufer(0)&1.5   &0               \\
+            &Wiederkäufer(1)&-5   &0              \\ \hline
+      \end{tabular}
+      \caption{Kostenmatrix}
+\end{table}
 
-\subsection{Subsection Example} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
 
+\end{frame}
+%---------------------------------------
 \begin{frame}
 \frametitle{Der Datensatz}
-\begin{figure}[ht]
-	\centering
-  \includegraphics[width=0.5\textwidth]{img/distributionTest.png}
-	\caption{Verteilung der Klassenlabel}
-	\label{fig1}
+\begin{columns}[c] % The "c" option specifies centered vertical alignment while the "t" option is used for top vertical alignment
+
+\column{.3\textwidth} % Left column and width
+\begin{footnotesize}
+\begin{itemize}
+\item 64854 Einträge
+\item 50:50 Train/ Test Split 
+\item 38 Merkmale
+\item davon 20 numerisch
+\item 18 kategorisch
+\end{itemize}
+\end{footnotesize}
+
+
+\column{.5\textwidth} % Right column and width
+\begin{figure}
+\begin{center}
+\includegraphics[width=.8\textwidth]{pdf/oversampled.pdf}
+\end{center}
+\caption{Verteilung Klassenlabel}
 \end{figure}
+\end{columns}
 \end{frame}
 
-%------------------------------------------------
+%---------------------------------------
+
 \begin{frame}
 \begin{footnotesize}
 \begin{itemize}
@@ -137,7 +172,7 @@ Friedrich-Schiller-Universität Jena \\ % Your institution for the title page
 \end{itemize}
 \end{footnotesize}
 
-\frametitle{Confusionmatrix Naiver Run (Decision Tree)}
+\frametitle{Konfusionsmatrix Naiver Run (Decision Tree)}
 \begin{figure}[ht]
 	\centering
   \includegraphics[width=0.5\textwidth]{img/naiveRun.png} 	
@@ -147,7 +182,15 @@ Friedrich-Schiller-Universität Jena \\ % Your institution for the title page
 
 %------------------------------------------------
 \begin{frame}
-\frametitle{Confusionmatrix nach Oversampling (Decision Tree)}
+\frametitle{Oversampling}
+\begin{center}
+\includegraphics[width=0.7\textwidth]{pdf/oversampled.pdf}
+\end{center}
+\end{frame}
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{Konfusionsmatrix nach Oversampling (Decision Tree)}
 \begin{footnotesize}
 \begin{itemize}
 \item  \textbf{erzielter Umsatz:} 11520.00 \euro{}
@@ -178,7 +221,7 @@ Random Forest Oversampling  & 11130.50 \euro{} &  8.901 sec\\
 Optimaler Klassifikator  & 39388.50 \euro{} &  -\\
 \bottomrule
 \end{tabular}
-\caption{Table caption}
+\caption{Ergebnisse}
 \end{table}
 \end{frame}
 
@@ -236,11 +279,9 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer lectus nisl, ul
 \end{frame}
 
 %------------------------------------------------
-\section{Second Section}
-%------------------------------------------------
 
 \begin{frame}
-\frametitle{Table}
+\frametitle{Zusammenfassung der Ergebnisse}
 \begin{table}
 \begin{tabular}{l l l}
 \toprule
@@ -251,7 +292,7 @@ Treatment 2 & 0.0015681 & 0.910 \\
 Treatment 3 & 0.0009271 & 0.296 \\
 \bottomrule
 \end{tabular}
-\caption{Table caption}
+\caption{Ergebnisse}
 \end{table}
 \end{frame}
 

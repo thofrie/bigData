@@ -1,3 +1,2 @@
-\beamer@sectionintoc {1}{First Section}{3}{0}{1}
-\beamer@subsectionintoc {1}{1}{Subsection Example}{3}{0}{1}
-\beamer@sectionintoc {2}{Second Section}{10}{0}{2}
+\beamer@sectionintoc {1}{Aufgabenstellung und Datensatz}{2}{0}{1}
+\beamer@sectionintoc {2}{Klassifikation und Evaluation}{2}{0}{2}
