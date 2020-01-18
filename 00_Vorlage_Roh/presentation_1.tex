@@ -97,7 +97,7 @@
 {
 Friedrich-Schiller-Universität Jena \\ % Your institution for the title page
 }
-\date{\today} % Date, can be changed to a custom date
+\date{20. Januar 2020} % Date, can be changed to a custom date
 
 \begin{document}
 \begin{frame}
@@ -129,7 +129,7 @@ Friedrich-Schiller-Universität Jena \\ % Your institution for the title page
             \multirow{2}*{Tatsächlich} &kein Wiederkäufer(0)&1.5   &0               \\
             &Wiederkäufer(1)&-5   &0              \\ \hline
       \end{tabular}
-      \caption{Kostenmatrix}
+      %\caption{Kostenmatrix}
 \end{table}
 
 
@@ -143,20 +143,19 @@ Friedrich-Schiller-Universität Jena \\ % Your institution for the title page
 \begin{footnotesize}
 \begin{itemize}
 \item 64854 Einträge
-\item 50:50 Train/ Test Split 
+\item 50:50 Train/ Test 
 \item 38 Merkmale
-\item davon 20 numerisch
+\item 20 numerisch
 \item 18 kategorisch
 \end{itemize}
 \end{footnotesize}
 
-
 \column{.5\textwidth} % Right column and width
 \begin{figure}
 \begin{center}
-\includegraphics[width=.8\textwidth]{pdf/oversampled.pdf}
+\includegraphics[width=1.0\textwidth]{pdf/distTrainTest.pdf}
 \end{center}
-\caption{Verteilung Klassenlabel}
+%\caption{Verteilung Klassenlabel}
 \end{figure}
 \end{columns}
 \end{frame}
@@ -173,190 +172,116 @@ Friedrich-Schiller-Universität Jena \\ % Your institution for the title page
 \end{footnotesize}
 
 \frametitle{Konfusionsmatrix Naiver Run (Decision Tree)}
-\begin{figure}[ht]
-	\centering
-  \includegraphics[width=0.5\textwidth]{img/naiveRun.png} 	
-	\label{fig1}
+\begin{figure}
+\begin{center}
+\includegraphics[width=.5\textwidth]{pdf/confusion1.pdf}
+\end{center}
+%\caption{Konfusionsmatrix Naiver Run}
 \end{figure}
 \end{frame}
 
 %------------------------------------------------
-\begin{frame}
-\frametitle{Oversampling}
-\begin{center}
-\includegraphics[width=0.7\textwidth]{pdf/oversampled.pdf}
-\end{center}
-\end{frame}
+%\begin{frame}
+%\frametitle{Oversampling}
+%\begin{center}
+%\includegraphics[width=0.7\textwidth]{pdf/oversampled.pdf}
+%\end{center}
+%\end{frame}
 %------------------------------------------------
-
 \begin{frame}
 \frametitle{Konfusionsmatrix nach Oversampling (Decision Tree)}
-\begin{footnotesize}
+\begin{columns}[c] % The "c" option specifies centered vertical alignment while the "t" option is used for top vertical alignment
+
+\column{.5\textwidth} % Left column and width
+\begin{tiny}
 \begin{itemize}
 \item  \textbf{erzielter Umsatz:} 11520.00 \euro{}
 \item \textbf{Umsatzsteigerung:}	25.79 \% 
 \item \textbf{Accuracy:} 75.23 \%
 \end{itemize}
-\end{footnotesize}
+\end{tiny}
 
-\begin{figure}[ht]
-	\centering
-  \includegraphics[width=0.5\textwidth]{img/finalDecision.png} 	
-	\label{fig1}
+\begin{figure}
+\begin{center}
+\includegraphics[width=.8\textwidth]{pdf/confusion2.pdf}
+\end{center}
+%\caption{Konfusionsmatrix nach Oversampling}
 \end{figure}
+
+
+\column{.5\textwidth} % Right column and width
+\begin{center}
+\includegraphics[width=.8\textwidth]{pdf/oversampled.pdf}
+\end{center}
+\end{columns}
 \end{frame}
+
+
 %------------------------------------------------
 
+%\begin{frame}
+%\frametitle{Konfusionsmatrix nach Oversampling (Decision Tree)}
+%\begin{footnotesize}
+%\begin{itemize}
+%\item  \textbf{erzielter Umsatz:} 11520.00 \euro{}
+%\item \textbf{Umsatzsteigerung:}	25.79 \% 
+%\item \textbf{Accuracy:} 75.23 \%
+%\end{itemize}
+%\end{footnotesize}
+%
+%\begin{figure}
+%\begin{center}
+%\includegraphics[width=.5\textwidth]{pdf/confusion2.pdf}
+%\end{center}
+%%\caption{Konfusionsmatrix nach Oversampling}
+%\end{figure}
+%\end{frame}
+%------------------------------------------------
+\begin{frame}
+\frametitle{Backward Feature Elimination}
+\begin{figure}
+\begin{center}
+\includegraphics[width=1.0\textwidth]{pdf/backwardSpark.pdf}
+\end{center}
+%\caption{Konfusionsmatrix Naiver Run}
+\end{figure}
+\end{frame}
+
+%------------------------------------------------
 \begin{frame}
 \frametitle{Zusammenfassung der Ergebnisse}
 \begin{table}
 \begin{tabular}{l c c}
 \toprule
-\textbf{Klassifikator} & \textbf{Umsatz} & \textbf{Zeit}\\
+\textbf{Klassifikator} & \textbf{Umsatz} & \textbf{Steigerung}\\
 \midrule
 Ohne Optimierung & 8548.50 \euro{} & - \\
-Decision Tree Naiv & 8552.00 \euro{} & 5.000 sec\\
-Decision Tree Oversampling  & 11520.00 \euro{} & 8.707 sec \\
-Random Forest Oversampling  & 11130.50 \euro{} &  8.901 sec\\
+Decision Tree Naiv & 8552.00 \euro{} & 0.0004 \%\\
+Decision Tree Oversampling  & 11667.50 \euro{} & 36.4859 \% \\
+Random Forest Oversampling  & 11709.50 \euro{} &  36.9772 \% \\
 Optimaler Klassifikator  & 39388.50 \euro{} &  -\\
 \bottomrule
 \end{tabular}
-\caption{Ergebnisse}
+%\caption{Ergebnisse}
 \end{table}
 \end{frame}
 
-%------------------------------------------------
-
-
-
-
-\begin{frame}
-\frametitle{Bullet Points}
-\begin{itemize}
-\item Lorem ipsum dolor sit amet, consectetur adipiscing elit
-\item Aliquam blandit faucibus nisi, sit amet dapibus enim tempus eu
-\item Nulla commodo, erat quis gravida posuere, elit lacus lobortis est, quis porttitor odio mauris at libero
-\item Nam cursus est eget velit posuere pellentesque
-\item Vestibulum faucibus velit a augue condimentum quis convallis nulla gravida
-\end{itemize}
-\end{frame}
 
 %------------------------------------------------
 
 \begin{frame}
-\frametitle{Blocks of Highlighted Text}
-\begin{block}{Block 1}
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer lectus nisl, ultricies in feugiat rutrum, porttitor sit amet augue. Aliquam ut tortor mauris. Sed volutpat ante purus, quis accumsan dolor.
-\end{block}
-
-\begin{block}{Block 2}
-Pellentesque sed tellus purus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vestibulum quis magna at risus dictum tempor eu vitae velit.
-\end{block}
-
-\begin{block}{Block 3}
-Suspendisse tincidunt sagittis gravida. Curabitur condimentum, enim sed venenatis rutrum, ipsum neque consectetur orci, sed blandit justo nisi ac lacus.
-\end{block}
-\end{frame}
-
-%------------------------------------------------
-
-\begin{frame}
-\frametitle{Multiple Columns}
-\begin{columns}[c] % The "c" option specifies centered vertical alignment while the "t" option is used for top vertical alignment
-
-\column{.45\textwidth} % Left column and width
-\textbf{Heading}
-\begin{enumerate}
-\item Statement
-\item Explanation
-\item Example
-\end{enumerate}
-
-\column{.5\textwidth} % Right column and width
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer lectus nisl, ultricies in feugiat rutrum, porttitor sit amet augue. Aliquam ut tortor mauris. Sed volutpat ante purus, quis accumsan dolor.
-
-\end{columns}
-\end{frame}
-
-%------------------------------------------------
-
-\begin{frame}
-\frametitle{Zusammenfassung der Ergebnisse}
-\begin{table}
-\begin{tabular}{l l l}
-\toprule
-\textbf{Treatments} & \textbf{Response 1} & \textbf{Response 2}\\
-\midrule
-Treatment 1 & 0.0003262 & 0.562 \\
-Treatment 2 & 0.0015681 & 0.910 \\
-Treatment 3 & 0.0009271 & 0.296 \\
-\bottomrule
-\end{tabular}
-\caption{Ergebnisse}
-\end{table}
-\end{frame}
-
-%------------------------------------------------
-
-\begin{frame}
-\frametitle{Theorem}
-\begin{theorem}[Mass--energy equivalence]
-$E = mc^2$
-\end{theorem}
-\end{frame}
-
-%------------------------------------------------
-
-\begin{frame}[fragile] % Need to use the fragile option when verbatim is used in the slide
-\frametitle{Verbatim}
-\begin{example}[Theorem Slide Code]
-\begin{verbatim}
-\begin{frame}
-\frametitle{Theorem}
-\begin{theorem}[Mass--energy equivalence]
-$E = mc^2$
-\end{theorem}
-\end{frame}\end{verbatim}
-\end{example}
-\end{frame}
-
-%------------------------------------------------
-
-\begin{frame}
-\frametitle{Figure}
-Uncomment the code on this slide to include your own image from the same directory as the template .TeX file.
-%\begin{figure}
-%\includegraphics[width=0.8\linewidth]{test}
-%\end{figure}
-\end{frame}
-
-%------------------------------------------------
-
-\begin{frame}[fragile] % Need to use the fragile option when verbatim is used in the slide
-\frametitle{Citation}
-An example of the \verb|\cite| command to cite within the presentation:\\~
-
-This statement requires citation \cite{p1}.
-\end{frame}
-
-%------------------------------------------------
-
-\begin{frame}
-\frametitle{References}
+\frametitle{Quelle: Aufgabenstellung und Datensatz}
 \footnotesize{
 \begin{thebibliography}{99} % Beamer does not support BibTeX so references must be inserted manually as below
-\bibitem[Smith, 2012]{p1} John Smith (2012)
-\newblock Title of the publication
-\newblock \emph{Journal Name} 12(3), 45 -- 678.
+\bibitem[DMC, 2010]{p1} Data Mining Cup 2010
+\newblock https://www.data-mining-cup.com/reviews/dmc-2010/
 \end{thebibliography}
 }
 \end{frame}
 
 %------------------------------------------------
 
-\begin{frame}
-\Huge{\centerline{The End}}
-\end{frame}
+
 
 %----------------------------------------------------------------------------------------
 

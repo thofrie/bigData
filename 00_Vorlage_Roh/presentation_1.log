@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6630 64-bit) (preloaded format=pdflatex 2018.3.22)  16 JAN 2020 15:54
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6630 64-bit) (preloaded format=pdflatex 2018.3.22)  18 JAN 2020 20:54
 entering extended mode
 **./presentation_1.tex
 (presentation_1.tex
@@ -1147,11 +1147,7 @@ Package: booktabs 2005/04/14 v1.61803 publication quality tables
 \@thisruleclass=\count161
 \@lastruleclass=\count162
 \@thisrulewidth=\dimen258
-) (presentation_1.aux
-
-LaTeX Warning: Label `fig1' multiply defined.
-
-)
+) (presentation_1.aux)
 \openout1 = `presentation_1.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 102.
@@ -1355,74 +1351,53 @@ thkerncmss.
 ) [3
 
 ]
-<pdf/oversampled.pdf, id=112, 542.025pt x 361.35pt>
-File: pdf/oversampled.pdf Graphic file (type pdf)
-<use pdf/oversampled.pdf>
-Package pdftex.def Info: pdf/oversampled.pdf  used on input line 162.
-(pdftex.def)             Requested size: 136.91862pt x 91.28012pt.
+<pdf/distTrainTest.pdf, id=112, 433.62pt x 289.08pt>
+File: pdf/distTrainTest.pdf Graphic file (type pdf)
+<use pdf/distTrainTest.pdf>
+Package pdftex.def Info: pdf/distTrainTest.pdf  used on input line 161.
+(pdftex.def)             Requested size: 171.14764pt x 114.09932pt.
  [4
 
- <./pdf/oversampled.pdf>]
-<img/naiveRun.png, id=145, 433.62pt x 433.62pt>
-File: img/naiveRun.png Graphic file (type png)
-<use img/naiveRun.png>
-Package pdftex.def Info: img/naiveRun.png  used on input line 181.
-(pdftex.def)             Requested size: 171.14764pt x 171.149pt.
+ <./pdf/distTrainTest.pdf>]
+<pdf/confusion1.pdf, id=157, 542.025pt x 542.025pt>
+File: pdf/confusion1.pdf Graphic file (type pdf)
+<use pdf/confusion1.pdf>
+Package pdftex.def Info: pdf/confusion1.pdf  used on input line 181.
+(pdftex.def)             Requested size: 171.14764pt x 171.14403pt.
  [5
 
- <./img/naiveRun.png>]
+ <./pdf/confusion1.pdf>]
+<pdf/confusion2.pdf, id=189, 542.025pt x 542.025pt>
+File: pdf/confusion2.pdf Graphic file (type pdf)
+<use pdf/confusion2.pdf>
+Package pdftex.def Info: pdf/confusion2.pdf  used on input line 217.
+(pdftex.def)             Requested size: 136.91862pt x 136.92018pt.
+<pdf/oversampled.pdf, id=190, 542.025pt x 361.35pt>
 File: pdf/oversampled.pdf Graphic file (type pdf)
 <use pdf/oversampled.pdf>
-Package pdftex.def Info: pdf/oversampled.pdf  used on input line 189.
-(pdftex.def)             Requested size: 239.60567pt x 159.73885pt.
+Package pdftex.def Info: pdf/oversampled.pdf  used on input line 217.
+(pdftex.def)             Requested size: 136.91862pt x 91.28012pt.
 
 [6
 
-]
-<img/finalDecision.png, id=202, 433.62pt x 433.62pt>
-File: img/finalDecision.png Graphic file (type png)
-<use img/finalDecision.png>
-Package pdftex.def Info: img/finalDecision.png  used on input line 207.
-(pdftex.def)             Requested size: 171.14764pt x 171.149pt.
-pdfTeX warning (ext4): destination with the same identifier (name{fig1}) has be
-en already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.207 \end{frame}
-                  [7
+ <./pdf/confusion2.pdf> <./pdf/oversampled.pdf
 
- <./img/finalDecision.png>] [8
+pdfTeX warning: pdflatex (file ./pdf/oversampled.pdf): PDF inclusion: multiple 
+pdfs with page group included in a single page
+>]
+<pdf/backwardSpark.pdf, id=225, 1626.075pt x 813.0375pt>
+File: pdf/backwardSpark.pdf Graphic file (type pdf)
+<use pdf/backwardSpark.pdf>
+Package pdftex.def Info: pdf/backwardSpark.pdf  used on input line 248.
+(pdftex.def)             Requested size: 342.2953pt x 171.13991pt.
+ [7
+
+ <./pdf/backwardSpark.pdf>] [8
 
 ] [9
 
-] [10
-
-] [11
-
-] [12
-
-] [13
-
-]
-\openout4 = `presentation_1.vrb'.
-
-
-(presentation_1.vrb) [14
-
-] [15
-
-]
-\openout4 = `presentation_1.vrb'.
-
- (presentation_1.vrb) [16
-
-] [17
-
  <C:/Users/lukas/AppData/Local/Programs/MiKTeX 2.9/tex/latex/beamer/beamericona
 rticle.pdf>]
-[18
-
-]
 \tf@nav=\write6
 \openout6 = `presentation_1.nav'.
 
@@ -1432,41 +1407,32 @@ rticle.pdf>]
 \tf@snm=\write8
 \openout8 = `presentation_1.snm'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 363.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 363.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 288.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 288.
  (presentation_1.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 363.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 363.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 288.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 288.
 Package rerunfilecheck Info: File `presentation_1.out' has not changed.
 (rerunfilecheck)             Checksum: 364DE6C794B7FAC0AD176652F413BA15;131.
-
-
-LaTeX Warning: There were multiply-defined labels.
-
  ) 
 Here is how much of TeX's memory you used:
- 18861 strings out of 493305
- 366396 string characters out of 3129802
- 450928 words of memory out of 3000000
- 21904 multiletter control sequences out of 15000+200000
- 16806 words of font info for 62 fonts, out of 3000000 for 9000
+ 18678 strings out of 493305
+ 362250 string characters out of 3129802
+ 443892 words of memory out of 3000000
+ 21749 multiletter control sequences out of 15000+200000
+ 15723 words of font info for 59 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 56i,15n,69p,783b,823s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 56i,15n,63p,783b,663s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Users/lukas/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts
 /cm/cmss10.pfb><C:/Users/lukas/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/pu
 blic/amsfonts/cm/cmss12.pfb><C:/Users/lukas/AppData/Local/Programs/MiKTeX 2.9/f
-onts/type1/public/amsfonts/cm/cmss17.pfb><C:/Users/lukas/AppData/Local/Programs
-/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmss8.pfb><C:/Users/lukas/AppData/Lo
-cal/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmss9.pfb><C:/Users/luka
-s/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmssbx10.pfb
-><C:/Users/lukas/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/
-cm/cmssi10.pfb><C:/Users/lukas/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/pu
-blic/amsfonts/cm/cmssi9.pfb><C:/Users/lukas/AppData/Local/Programs/MiKTeX 2.9/f
-onts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Users/lukas/AppData/Local/Programs
-/MiKTeX 2.9/fonts/type1/public/eurosym/feymr10.pfb>
-Output written on presentation_1.pdf (18 pages, 275575 bytes).
+onts/type1/public/amsfonts/cm/cmss8.pfb><C:/Users/lukas/AppData/Local/Programs/
+MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmss9.pfb><C:/Users/lukas/AppData/Loc
+al/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmssbx10.pfb><C:/Users/lu
+kas/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/eurosym/feymr10.pfb>
+Output written on presentation_1.pdf (9 pages, 276851 bytes).
 PDF statistics:
- 583 PDF objects out of 1000 (max. 8388607)
- 41 named destinations out of 1000 (max. 500000)
- 116 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 346 PDF objects out of 1000 (max. 8388607)
+ 22 named destinations out of 1000 (max. 500000)
+ 96 words of extra memory for PDF output out of 10000 (max. 10000000)
 
