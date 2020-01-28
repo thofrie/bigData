@@ -1,0 +1,23 @@
+\BOOKMARK [0][-]{chapter.1}{Einleitung}{}% 1
+\BOOKMARK [0][-]{chapter.2}{Material und Methoden}{}% 2
+\BOOKMARK [1][-]{section.2.1}{Business Understanding}{chapter.2}% 3
+\BOOKMARK [1][-]{section.2.2}{Data Understanding}{chapter.2}% 4
+\BOOKMARK [2][-]{subsection.2.2.1}{Der Datensatz}{section.2.2}% 5
+\BOOKMARK [2][-]{subsection.2.2.2}{Die Zielvariable}{section.2.2}% 6
+\BOOKMARK [2][-]{subsection.2.2.3}{Kategoriale Merkmale}{section.2.2}% 7
+\BOOKMARK [2][-]{subsection.2.2.4}{Numerische Merkmale}{section.2.2}% 8
+\BOOKMARK [1][-]{section.2.3}{Data Preparation}{chapter.2}% 9
+\BOOKMARK [2][-]{subsection.2.3.1}{Feature Engingeering}{section.2.3}% 10
+\BOOKMARK [2][-]{subsection.2.3.2}{Resampling}{section.2.3}% 11
+\BOOKMARK [2][-]{subsection.2.3.3}{Merkmalsskalierung}{section.2.3}% 12
+\BOOKMARK [1][-]{section.2.4}{Modeling}{chapter.2}% 13
+\BOOKMARK [2][-]{subsection.2.4.1}{k-Nearest-Neighbor-Algorithmus}{section.2.4}% 14
+\BOOKMARK [2][-]{subsection.2.4.2}{Entscheidungsbaum Klassifikator}{section.2.4}% 15
+\BOOKMARK [2][-]{subsection.2.4.3}{Random Forests}{section.2.4}% 16
+\BOOKMARK [2][-]{subsection.2.4.4}{AdaBoost}{section.2.4}% 17
+\BOOKMARK [1][-]{section.2.5}{Evaluation}{chapter.2}% 18
+\BOOKMARK [2][-]{subsection.2.5.1}{Das Evaluationskriterium}{section.2.5}% 19
+\BOOKMARK [2][-]{subsection.2.5.2}{Wahl der Hyperparameter}{section.2.5}% 20
+\BOOKMARK [2][-]{subsection.2.5.3}{Backward Feature Elimination}{section.2.5}% 21
+\BOOKMARK [2][-]{subsection.2.5.4}{Evaluation des besten Klassifikators}{section.2.5}% 22
+\BOOKMARK [0][-]{chapter.3}{Zusammenfassung}{}% 23

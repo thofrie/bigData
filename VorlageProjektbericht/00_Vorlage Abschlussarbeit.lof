@@ -1,0 +1,14 @@
+\babel@toc {ngerman}{}
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Klassenverteilung in Trainings- und Testdaten\relax }}{10}{figure.2.1}
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Verteilung nominal- und ordinalskalierte Merkmale\relax }}{13}{figure.2.2}
+\contentsline {figure}{\numberline {2.3}{\ignorespaces Boxplot der numerischen Merkmale\relax }}{16}{figure.2.3}
+\contentsline {figure}{\numberline {2.4}{\ignorespaces Korrelationsmatrix der numerischen Merkmale\relax }}{19}{figure.2.4}
+\contentsline {figure}{\numberline {2.5}{\ignorespaces Zwei Hauptkomponenten mit Klassenlabel\relax }}{21}{figure.2.5}
+\contentsline {figure}{\numberline {2.6}{\ignorespaces Hauptkomponente und erkl\IeC {\"a}rte Varianz\relax }}{21}{figure.2.6}
+\contentsline {figure}{\numberline {2.7}{\ignorespaces Klassenverteilung nach Oversampling der Minderheitsklasse\relax }}{28}{figure.2.7}
+\contentsline {figure}{\numberline {2.8}{\ignorespaces Variation der Hyperparameter auf dem kompletten Merkmalsraum\relax }}{33}{figure.2.8}
+\contentsline {figure}{\numberline {2.9}{\ignorespaces Umsatz in Anbh\IeC {\"a}ngigkeit zur Anzahl der entfernten Merkmale\relax }}{34}{figure.2.9}
+\contentsline {figure}{\numberline {2.10}{\ignorespaces Konfusionsmatrix des besten Klassifikators\relax }}{37}{figure.2.10}
+\addvspace {10\p@ }

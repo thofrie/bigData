@@ -1,0 +1,28 @@
+\babel@toc {ngerman}{}
+\contentsline {chapter}{\numberline {1}Einleitung}{5}{chapter.1}
+\contentsline {chapter}{\numberline {2}Material und Methoden}{6}{chapter.2}
+\contentsline {section}{\numberline {2.1}Business Understanding}{6}{section.2.1}
+\contentsline {section}{\numberline {2.2}Data Understanding}{7}{section.2.2}
+\contentsline {subsection}{\numberline {2.2.1}Der Datensatz}{9}{subsection.2.2.1}
+\contentsline {subsection}{\numberline {2.2.2}Die Zielvariable}{10}{subsection.2.2.2}
+\contentsline {subsection}{\numberline {2.2.3}Kategoriale Merkmale}{11}{subsection.2.2.3}
+\contentsline {subsection}{\numberline {2.2.4}Numerische Merkmale}{13}{subsection.2.2.4}
+\contentsline {subsubsection}{\nonumberline PCA}{20}{section*.7}
+\contentsline {section}{\numberline {2.3}Data Preparation}{22}{section.2.3}
+\contentsline {subsection}{\numberline {2.3.1}Feature Engingeering}{22}{subsection.2.3.1}
+\contentsline {subsubsection}{\nonumberline Konstruierte Attribute}{22}{section*.8}
+\contentsline {subsubsection}{\nonumberline Modifizierte Attribute}{23}{section*.9}
+\contentsline {subsubsection}{\nonumberline Gel\IeC {\"o}schte Attribute}{25}{section*.10}
+\contentsline {subsection}{\numberline {2.3.2}Resampling}{27}{subsection.2.3.2}
+\contentsline {subsection}{\numberline {2.3.3}Merkmalsskalierung}{28}{subsection.2.3.3}
+\contentsline {section}{\numberline {2.4}Modeling}{29}{section.2.4}
+\contentsline {subsection}{\numberline {2.4.1}k-Nearest-Neighbor-Algorithmus}{29}{subsection.2.4.1}
+\contentsline {subsection}{\numberline {2.4.2}Entscheidungsbaum Klassifikator}{30}{subsection.2.4.2}
+\contentsline {subsection}{\numberline {2.4.3}Random Forests}{31}{subsection.2.4.3}
+\contentsline {subsection}{\numberline {2.4.4}AdaBoost}{31}{subsection.2.4.4}
+\contentsline {section}{\numberline {2.5}Evaluation}{31}{section.2.5}
+\contentsline {subsection}{\numberline {2.5.1}Das Evaluationskriterium}{31}{subsection.2.5.1}
+\contentsline {subsection}{\numberline {2.5.2}Wahl der Hyperparameter}{32}{subsection.2.5.2}
+\contentsline {subsection}{\numberline {2.5.3}Backward Feature Elimination}{33}{subsection.2.5.3}
+\contentsline {subsection}{\numberline {2.5.4}Evaluation des besten Klassifikators}{37}{subsection.2.5.4}
+\contentsline {chapter}{\numberline {3}Zusammenfassung}{39}{chapter.3}
