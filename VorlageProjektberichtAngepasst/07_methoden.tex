@@ -221,46 +221,37 @@ Das nominalskalierte Merkmal points gibt an, ob bei der Bestellung Punkte eingel
 %\begin{tabular}{c c c c c c l}
 \begin{tabular*}{\textwidth}{c @{\extracolsep{\fill}} lllllll}
 \toprule
-\textbf{Rev.} & \textbf{CART} & \textbf{Iter.} & \textbf{Rev.} & \textbf{RF} & \textbf{Rev.} &\textbf{AdaBoost} \\
+\textbf{i} & \textbf{Rev DT} & \textbf{t in sec} & \textbf{dropped DT} & \textbf{Rev RF} & \textbf{t in sec} &\textbf{dropped RF} \\
 \midrule
-903.0 & w9 & 1 & 857.0 & numberitems & 918.5 & books\\
-910.5 & nobooks & 2 & 962.5 & paymenttype0 & 918.5 & paymenttype1\\
-910.5 & paymenttype0  & 3 & 931.5 & books & 918.5 & paymenttype1\\
-910.5 & paymenttype1 & 4 & 980.0 & paymenttype2 & 918.5 & paymenttype3\\
-910.5 & paymenttype2 & 5 & 997.0 & model2 & 918.5 & model1\\
-910.5 & paymenttype3 & 6 & 958.0 & advertising & 918.5 & model2\\
-910.5 & model1 & 7 & 932.0 & model3 & 918.5 & salutation0 \\
-910.5 & model2 & 8 & 951.0 & salutation1 & 918.5 & salutation1\\
-910.5 & model3 & 9 & 940.5 & model1 & 918.5 & advertising\\
-910.5 & salutation0  & 10 & 928.5 & entry & 918.5 & entry\\
-910.5 & salutation1 & 11 & 899.5 & deliverydiff & 918.5 & w4\\
-910.5 & salutation2 & 12 & 940.0 & accountdur & 918.5 & w8\\
-910.5 & voucher & 13 & 944.5 & w10 & 918.5 & itemseff\\
-910.5 & advertising & 14 & 934.0 & voucher & 918.5 & deliverydiff\\
-910.5 & numberitems & 15 & 964.0 & w1 & 916.5 & nobooks\\
-911.0 & books & 16 & 910.5 & nobooks & 936.0 & case\\
-911.0 & entry & 17 & 949.0 & salutation2 & 937.5 & w5\\
-911.0 & cancel & 18 & 976.5 & paymenttype3 & 922.0 & w1\\
-911.0 & used & 19 & 921.5 & salutation0  & 928.5 & deliverytype\\
-914.0 & weight & 20 & 962.5 & w0 & 957.0 & w10\\
-914.0 & w0 & 21 & 964.0 & w4 & 957.0 & paymenttype0 \\
-914.0 & w6 & 22 & 914.0 & itemseff & 941.0 & w6\\
-914.0 & w3 & 23 & 931.5 & shippingcosts & 939.0 & w9\\
-918.5 & w4 & 24 & 912.5 & used & 933.0 & used\\
-918.5 & w8 & 25 & 935.0 & w2 & 926.5 & w2\\
-918.5 & deliverydiff & 26 & 903.5 & w6 & 907.0 & numberitems\\
-918.5 & w7 & 27 & 915.0 & paymenttype1 & 932.5 & voucher\\
-918.5 & accountdur & 28 & 913.5 & w8 & 954.5 & w0\\
-914.0 & case & 29 & 942.0 & cancel & 951.0 & salutation2\\
-917.5 & w5 & 30 & 947.5 & w9 & 968.0 & shippingcosts\\
-913.0 & w2 & 31 & 934.0 & w7 & 921.5 & model3\\
-907.0 & shippingcosts & 32 & 960.0 & w5 & 920.0 & cancel\\
-889.0 & w1 & 33 & 909.5 & case & 908.0 & w7\\
-839.0 & itemseff & 34 & 899.5 & w3 & 896.0 & w3\\
-865.0 & w10 & 35 & 865.0 & weight & 824.0 & weight\\
-812.5 & deliverytype & 36 & 812.5 & deliverytype & 812.5 & accountdur\\
-759.0 & remi & 37 & 759.0 & remi & 759.0 & remi\\
-759.0 & newsletter & 38 & 759.0 & newsletter & 759.0 & newsletter\\
+1 & 11569.00 & 5.73 & shippingcosts & 11444.50 & 5.89 & numberitems \\
+2 & 11619.00 & 5.55 & modelVec & 11507.00 & 5.84 & nobooks \\
+3 & 11639.00 & 5.42 & salutationVec & 11643.00 & 6.24 & w8 \\
+4 & 11645.00 & 4.92 & entry & 11545.00 & 6.30 & entry \\
+5 & 11645.00 & 5.53 & case & 11447.00 & 5.52 & w3 \\
+6 & 11645.00 & 5.09 & numberitems & 11613.50 & 5.22 & itemseff \\
+7 & 11645.00 & 5.25 & gift & 11593.00 & 5.39 & w0 \\
+8 & 11645.00 & 5.68 & w0 & 11676.50 & 5.70 & books \\
+9 & 11645.00 & 5.79 & w2 & 11409.50 & 5.93 & w4 \\
+10 & 11645.00 & 5.26 & w3 & 11420.00 & 5.71 & modelVec \\
+11 & 11645.00 & 4.89 & w4 & 11683.50 & 5.72 & w2 \\
+12 & 11645.00 & 5.07 & w6 & 11602.50 & 5.58 & gift \\
+13 & 11645.00 & 5.04 & w8 & 11554.50 & 5.72 & accountdur \\
+14 & 11645.00 & 5.52 & w9 & 11485.00 & 5.96 & cancel \\
+15 & 11645.00 & 5.19 & nobooks & 11641.00 & 5.68 & w7 \\
+16 & 11644.50 & 4.47 & books & 11561.50 & 5.56 & w5 \\
+17 & 11667.50 & 4.72 & w7 & 11550.50 & 5.46 & w6 \\
+18 & 11653.00 & 4.93 & w5 & 11624.50 & 5.75 & w10 \\
+19 & 11635.00 & 4.89 & w10 & 11598.50 & 6.29 & w9 \\
+20 & 11602.50 & 4.99 & cancel & 11570.50 & 5.97 & salutationVec \\
+21 & 11588.50 & 4.54 & voucher & 11709.50 & 6.05 & shippingcosts \\
+22 & 11571.00 & 4.25 & accountdur & 11558.00 & 5.34 & case \\
+23 & 11510.50 & 4.36 & used & 11636.00 & 5.63 & voucher \\
+24 & 11320.50 & 4.71 & itemseff & 11516.00 & 5.48 & used \\
+25 & 11094.00 & 4.41 & weight & 11208.00 & 5.09 & weight \\
+26 & 10747.50 & 4.76 & w1 & 10782.50 & 5.53 & paymenttypeVec \\
+27 & 10785.50 & 4.69 & paymenttypeVec & 10786.00 & 6.03 & w1 \\
+28 & 9938.50 & 4.45 & remi & 9938.50 & 4.90 & remi \\
+29 & 9938.50 & 3.97 & newsletter & 9938.50 & 4.46 & newsletter \\
 \bottomrule
 \end{tabular*}
 \caption{Ergebnisse Backward Feature Elimination}

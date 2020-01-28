@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6630 64-bit) (preloaded format=pdflatex 2018.3.22)  28 JAN 2020 14:43
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6630 64-bit) (preloaded format=pdflatex 2018.3.22)  28 JAN 2020 15:27
 entering extended mode
 **"./00_Vorlage Abschlussarbeit.tex"
 ("00_Vorlage Abschlussarbeit.tex"
@@ -1430,7 +1430,7 @@ LaTeX Warning: No positions in optional float specifier.
 <pdf/confusion2.pdf, id=192, 542.025pt x 542.025pt>
 File: pdf/confusion2.pdf Graphic file (type pdf)
 <use pdf/confusion2.pdf>
-Package pdftex.def Info: pdf/confusion2.pdf  used on input line 276.
+Package pdftex.def Info: pdf/confusion2.pdf  used on input line 267.
 (pdftex.def)             Requested size: 271.01183pt x 271.01183pt.
  [15 <./pdf/confusion2.pdf>]
 chapter 4.
@@ -1457,8 +1457,8 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 150.
  ) 
 Here is how much of TeX's memory you used:
  14572 strings out of 493305
- 235353 string characters out of 3129802
- 448604 words of memory out of 3000000
+ 235551 string characters out of 3129802
+ 445604 words of memory out of 3000000
  17776 multiletter control sequences out of 15000+200000
  58655 words of font info for 50 fonts, out of 3000000 for 9000
  1142 hyphenation exceptions out of 8191
@@ -1472,7 +1472,7 @@ lic/lm/lmr12.pfb><C:/Users/lukas/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/
 public/lm/lmr17.pfb><C:/Users/lukas/AppData/Local/Programs/MiKTeX 2.9/fonts/typ
 e1/public/lm/lmro12.pfb><C:/Users/lukas/AppData/Local/Programs/MiKTeX 2.9/fonts
 /type1/public/lm/lmssbx10.pfb>
-Output written on "00_Vorlage Abschlussarbeit.pdf" (16 pages, 350997 bytes).
+Output written on "00_Vorlage Abschlussarbeit.pdf" (16 pages, 349916 bytes).
 PDF statistics:
  242 PDF objects out of 1000 (max. 8388607)
  44 named destinations out of 1000 (max. 500000)
