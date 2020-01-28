@@ -1,0 +1,14 @@
+\BOOKMARK [0][-]{chapter.1}{Aufgabenstellung}{}% 1
+\BOOKMARK [0][-]{chapter.2}{Datensatz und Preprocessing}{}% 2
+\BOOKMARK [1][-]{subsection.2.0.1}{Der Datensatz}{chapter.2}% 3
+\BOOKMARK [2][-]{subsection.2.0.2}{Die Zielvariable}{subsection.2.0.1}% 4
+\BOOKMARK [2][-]{subsection.2.0.3}{Feature Engingeering}{subsection.2.0.1}% 5
+\BOOKMARK [2][-]{subsection.2.0.4}{Resampling}{subsection.2.0.1}% 6
+\BOOKMARK [0][-]{chapter.3}{Modeling und Evaluation}{}% 7
+\BOOKMARK [1][-]{section.3.1}{Modeling}{chapter.3}% 8
+\BOOKMARK [2][-]{subsection.3.1.1}{Entscheidungsbaum Klassifikator}{section.3.1}% 9
+\BOOKMARK [2][-]{subsection.3.1.2}{Random Forests}{section.3.1}% 10
+\BOOKMARK [1][-]{section.3.2}{Evaluation}{chapter.3}% 11
+\BOOKMARK [2][-]{subsection.3.2.1}{Das Evaluationskriterium}{section.3.2}% 12
+\BOOKMARK [2][-]{subsection.3.2.2}{Backward Feature Elimination}{section.3.2}% 13
+\BOOKMARK [0][-]{chapter.4}{Zusammenfassung}{}% 14

@@ -1,0 +1,18 @@
+\babel@toc {ngerman}{}
+\contentsline {chapter}{\numberline {1}Aufgabenstellung}{5}{chapter.1}
+\contentsline {chapter}{\numberline {2}Datensatz und Preprocessing}{6}{chapter.2}
+\contentsline {subsection}{\numberline {2.0.1}Der Datensatz}{7}{subsection.2.0.1}
+\contentsline {subsection}{\numberline {2.0.2}Die Zielvariable}{8}{subsection.2.0.2}
+\contentsline {subsection}{\numberline {2.0.3}Feature Engingeering}{9}{subsection.2.0.3}
+\contentsline {subsubsection}{\nonumberline Konstruierte Attribute}{9}{section*.6}
+\contentsline {subsubsection}{\nonumberline Modifizierte Attribute}{9}{section*.7}
+\contentsline {subsubsection}{\nonumberline Gel\IeC {\"o}schte Attribute}{10}{section*.8}
+\contentsline {subsection}{\numberline {2.0.4}Resampling}{12}{subsection.2.0.4}
+\contentsline {chapter}{\numberline {3}Modeling und Evaluation}{13}{chapter.3}
+\contentsline {section}{\numberline {3.1}Modeling}{13}{section.3.1}
+\contentsline {subsection}{\numberline {3.1.1}Entscheidungsbaum Klassifikator}{13}{subsection.3.1.1}
+\contentsline {subsection}{\numberline {3.1.2}Random Forests}{13}{subsection.3.1.2}
+\contentsline {section}{\numberline {3.2}Evaluation}{13}{section.3.2}
+\contentsline {subsection}{\numberline {3.2.1}Das Evaluationskriterium}{13}{subsection.3.2.1}
+\contentsline {subsection}{\numberline {3.2.2}Backward Feature Elimination}{13}{subsection.3.2.2}
+\contentsline {chapter}{\numberline {4}Zusammenfassung}{16}{chapter.4}

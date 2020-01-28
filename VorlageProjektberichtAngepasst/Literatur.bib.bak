@@ -1,0 +1,27 @@
+% Encoding: UTF-8
+
+@Article{10.1093/treephys/24.2.121,
+  author   = {Wirth, Christian and Schumacher, Jens and Schulze, Ernst-Detlef},
+  title    = {{Generic biomass functions for Norway spruce in Central Europe—a meta-analysis approach toward prediction and uncertainty estimation}},
+  journal  = {Tree Physiology},
+  year     = {2004},
+  volume   = {24},
+  number   = {2},
+  pages    = {121-139},
+  month    = {02},
+  issn     = {1758-4469},
+  abstract = {{ To facilitate future carbon and nutrient inventories, we used mixed-effect linear models to develop new generic biomass functions for Norway spruce ( Picea abies (L.) Karst.) in Central Europe. We present both the functions and their respective variance–covariance matrices and illustrate their application for biomass prediction and uncertainty estimation for Norway spruce trees ranging widely in size, age, competitive status and site. We collected biomass data for 688 trees sampled in 102 stands by 19 authors. The total number of trees in the “base” model data sets containing the predictor variables diameter at breast height ( D ), height ( H ), age ( A ), site index (SI) and site elevation (HSL) varied according to compartment (roots: n = 114, stem: n = 235, dry branches: n = 207, live branches: n = 429 and needles: n = 551). “Core” data sets with about 40\\% fewer trees could be extracted containing the additional predictor variables crown length and social class. A set of 43 candidate models representing combinations of ln D , ln H , ln A , SI and HSL, including second-order polynomials and interactions, was established. The categorical variable “author” subsuming mainly methodological differences was included as a random effect in a mixed linear model. The Akaike Information Criterion was used for model selection. The best models for stem, root and branch biomass contained only combinations of D , H and A as predictors. More complex models that included site-related variables resulted for needle biomass. Adding crown length as a predictor for needles, branches and roots reduced both the bias and the confidence interval of predictions substantially. Applying the best models to a test data set of 17 stands ranging in age from 16 to 172 years produced realistic allocation patterns at the tree and stand levels. The 95\\% confidence intervals (\\% of mean prediction) were highest for crown compartments (∼ ± 12\\%) and lowest for stem biomass (∼ ± 5\\%), and within each compartment, they were highest for the youngest and oldest stands, respectively. }},
+  doi      = {10.1093/treephys/24.2.121},
+  eprint   = {http://oup.prod.sis.lan/treephys/article-pdf/24/2/121/6874759/24-2-121.pdf},
+  url      = {https://doi.org/10.1093/treephys/24.2.121},
+}
+
+@Article{,
+  author  = {Thomas Wutzler, Christian Wirth, Jens Schumacher},
+  title   = {Generic biomass functions for Common beech (Fagus sylvatica) in Central Europe: predictions and components of uncertainty},
+  journal = {Canadian Journal of Forest Research, 2008, 38(6): 1661-1675},
+  year    = {27 May 2008},
+  groups  = {Friedrich Schiller University, Institute for Stochastic, Ernst-Abbe-Platz 2 07743 Jena, Germany},
+}
+
+@Comment{jabref-meta: databaseType:bibtex;}
